@@ -16,7 +16,7 @@ def emotion_detector(text_to_analyse):  # Define a function named emotion_detect
     # Access the emotion dictionary inside the prediction
     emotion_scores = prediction['emotion']
 
-    # Extract individual emotion scores
+    # Extract individual emotion scores.
     anger_score = emotion_scores['anger']
     disgust_score = emotion_scores['disgust']
     fear_score = emotion_scores['fear']
