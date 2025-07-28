@@ -1,10 +1,16 @@
-from flask import Flask, render_template, request
+"""
+This module provides emotion detection for a given string
+"""
+from flask import Flask, render_template, request # import libraries
 from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def sent_analyzer():
+    """
+    Main function for analyzing a string
+    """
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
@@ -16,16 +22,19 @@ def sent_analyzer():
     # Check if the dominant_emotion is None, indicating no text string was entered
     if response['dominant_emotion'] == 'None':
         return "Invalid text! Please try again!"
-    else:
-        return (f"For the given statement, the system response is 'anger': {response['anger']}, "
-                f"'disgust': {response['disgust']}, "
-                f"'fear': {response['fear']}, "
-                f"'joy': {response['joy']}, "
-                f"'sadness': {response['sadness']}. "
-                f"The dominant emotion is {response['dominant_emotion']}.")
+
+    return (f"For the given statement, the system response is 'anger': {response['anger']}, "
+            f"'disgust': {response['disgust']}, "
+            f"'fear': {response['fear']}, "
+            f"'joy': {response['joy']}, "
+            f"'sadness': {response['sadness']}. "
+            f"The dominant emotion is {response['dominant_emotion']}.")
 
 @app.route("/")
 def render_index_page():
+    """
+    Function for controlling navigation
+    """
     return render_template('index.html')
 
 if __name__ == "__main__":
